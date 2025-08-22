@@ -3,8 +3,13 @@ services:
     name: calculadora-box
     env: python
     plan: free
-    region: oregon
+    region: frankfurt
     branch: main
     buildCommand: "pip install -r requirements.txt"
     startCommand: "gunicorn app:app"
     autoDeploy: true
+    envVars:
+      - key: FLASK_ENV
+        value: production
+      - key: PYTHON_VERSION
+        value: 3.11.9
