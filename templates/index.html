@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Calculadora de Box</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>📦 Calculadora de Box</h1>
+    <p class="hint">Selecione a quantidade de cada item e clique em <b>Calcular</b>.</p>
+
+    <form method="POST" class="form-grid">
+      <div class="grid">
+        {% for item in itens %}
+          <div class="card">
+            <div class="icon-wrap">
+              {% set icon_path = 'icons/' + item.slug + '.svg' %}
+              <img src="{{ url_for('static', filename=icon_path) }}" onerror="this.src='{{ url_for('static', filename='icons/_default.svg') }}';" alt="{{ item.nome }}">
+            </div>
+            <div class="title">{{ item.nome }}</div>
+            <div class="meta">
+              <span>{{ "%.2f"|format(item.m3) }} m³</span>
+              {% if item.empilhavel %}
+                <span class="chip">empilha até {{ item.max_emp }}</span>
+              {% else %}
+                <span class="chip off">não empilha</span>
+              {% endif %}
+            </div>
+            <div class="qty">
+              <button type="button" class="btn-qty" onclick="dec('{{ item.slug }}')">−</button>
+              <input type="number" min="0" step="1" value="0" name="qty_{{ item.slug }}" id="qty_{{ item.slug }}">
+              <button type="button" class="btn-qty" onclick="inc('{{ item.slug }}')">+</button>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+
+      <div class="actions">
+        <button type="submit" class="btn-primary">Calcular</button>
+      </div>
+    </form>
+
+    {% if resultado %}
+      <div class="result">
+        <h2>Resultado</h2>
+        <p>{{ resultado|safe }}</p>
+      </div>
+    {% endif %}
+
+    {% if detalhes %}
+      <div class="details">
+        <h3>Detalhes</h3>
+        <p>{{ detalhes|safe }}</p>
+      </div>
+    {% endif %}
+  </div>
+
+  <script>
+    function inc(slug){ const el = document.getElementById('qty_'+slug); el.value = (parseInt(el.value||'0',10)+1); }
+    function dec(slug){ const el = document.getElementById('qty_'+slug); el.value = Math.max(0, parseInt(el.value||'0',10)-1); }
+  </script>
+</body>
+</html>
