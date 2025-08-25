@@ -11,6 +11,14 @@
     <h1>📦 Calculadora de Box</h1>
     <p class="hint">Selecione a quantidade de cada item e clique em <b>Calcular</b>.</p>
 
+    {% if resultado %}
+      <div class="result">
+        <h2>Resultado</h2>
+        <p>{{ resultado|safe }}</p>
+      </div>
+    {% endif %}
+
+
     <form method="POST" class="form-grid">
       <div class="grid">
         {% for item in itens %}
@@ -42,19 +50,6 @@
       </div>
     </form>
 
-    {% if resultado %}
-      <div class="result">
-        <h2>Resultado</h2>
-        <p>{{ resultado|safe }}</p>
-      </div>
-    {% endif %}
-
-    {% if detalhes %}
-      <div class="details">
-        <h3>Detalhes</h3>
-        <p>{{ detalhes|safe }}</p>
-      </div>
-    {% endif %}
   </div>
 
   <script>

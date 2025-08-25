@@ -219,7 +219,7 @@ def index():
         else:
             resultado_html = "❌ Nenhum box disponível atende ao volume/altura com empilhamento respeitando a altura do box."
 
-    return render_template("index.html", itens=itens_ui, resultado=resultado_html, detalhes=detalhes_html)
+    return render_template("index.html", itens=itens_ui, resultado=resultado_html)
 
 # ===========================
 # Run
