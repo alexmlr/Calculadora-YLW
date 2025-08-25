@@ -211,10 +211,8 @@ def index():
         # Resultado
         if box is not None:
             resultado_html = (
-                f"<b>Volume total (com folga):</b> {vol_calc:.2f} m³<br>"
-                f"<b>Altura máxima empilhada usada:</b> {alt_usada:.2f} m<br>"
-                f"<b>Box sugerido:</b> {box['Box']} "
-                f"({box['Largura']}m × {box['Comprimento']}m × {box['Altura']}m = {box['Metros Cubicos']} m³)"
+                f"<b>Box sugerido:</b> {box['Box']} - "
+                f"{box['Metros Quadrados']:.2f} m² - {box['Metros Cubicos']:.2f} m³"
             )
         else:
             resultado_html = "❌ Nenhum box disponível atende ao volume/altura com empilhamento respeitando a altura do box."

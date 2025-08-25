@@ -72,6 +72,6 @@ h1{ margin:0 0 6px; text-align:center; }
 .btn-primary:hover{ filter:brightness(.98); }
 
 .result, .details{
-  margin-top:20px; border:1px solid var(--line); border-radius:12px; padding:16px; background:#fff;
+  margin:20px 20px; border:1px solid var(--line); border-radius:12px; padding:16px; background:#fff;
 }
 .result h2, .details h3{ margin:0 0 8px; }
