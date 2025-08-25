@@ -5,11 +5,12 @@ services:
     plan: free
     region: frankfurt
     branch: main
-    buildCommand: "pip install --upgrade pip setuptools wheel && pip install --no-cache-dir -r requirements.txt"
+    buildCommand: >
+      pip install --upgrade pip setuptools wheel &&
+      pip install --only-binary=:all: --no-cache-dir numpy==1.26.4 &&
+      pip install --only-binary=:all: --no-cache-dir -r requirements.txt
     startCommand: "gunicorn app:app"
     autoDeploy: true
     envVars:
       - key: FLASK_ENV
         value: production
-      - key: PYTHON_VERSION
-        value: 3.11.9
